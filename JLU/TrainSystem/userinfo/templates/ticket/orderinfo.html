@@ -1,0 +1,32 @@
+{% extends 'userinfo/base.html' %}
+{% block title %}确认订单{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <h2>请确认您的订单信息：</h2>
+        </div>
+    <hr>
+        <div class="row">
+            <p>姓名：{{ user.name }}</p>
+            <p>电话:{{ user.phonenum }}</p>
+            <p>身份证号：{{ user.idnum }}</p>
+        </div>
+        <div class="row">
+            <p>订单信息:</p>
+            <p>起始地：{{ ticket.startplace }}</p>
+            <p>目的地:{{ ticket.endplace  }}</p>
+            <p>价格：{{ ticket.price }}</p>
+        </div>
+    <hr>
+        <div class="row">
+            <h6>请选择支付方式:</h6>
+            <ul class="list-group">
+                <li class="list-group-item"><a href={% url "paypage" ticket.price 0%}>微信</a></li>
+                <li class="list-group-item"><a href={% url "paypage" ticket.price 1%}>支付宝</a></li>
+                <li class="list-group-item"><a href={% url "paypage" ticket.price 2%}>银行卡</a></li>
+                <li class="list-group-item"><a href={% url "paypage" ticket.price 3%}>现金</a></li>
+            </ul>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'userinfo/base.html' %}
+{% block title %}现金支付{% endblock %}
+{% block content %}
+
+     <div class="container">
+        <div class="col-md-4 col-md-offset-4">
+          <form class='form-register' action={% url "payres" 3 price price %} method="post">
+              {% csrf_token %}
+              <p>您应该支付:{{ price }}</p>
+            <p>请根据提示放入您的现金</p>
+             <div class="form-group" >
+                 <label for="money">现金：</label>
+                 <input type="text" name="money" class="form-control" id="startplace" placeholder="请输入金额" required="true" >
+             </div>
+
+              <button type="reset" class="btn btn-default pull-left">重置</button>
+              <button type="submit" class="btn btn-primary pull-right">提交</button>
+
+          </form>
+        </div>
+    </div>
+{% endblock %}

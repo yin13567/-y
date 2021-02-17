@@ -1,0 +1,27 @@
+{% extends 'userinfo/base.html' %}
+{% block title %}支付结果{% endblock %}
+{% block content %}
+    <p>支付完成</p>
+    <p>支付方式:
+    {% if way == 0 %}
+        微信支付
+    {% endif %}
+    {% if way == 1 %}
+        支付宝支付
+    {% endif %}
+    {% if way == 2 %}
+        银行卡支付
+    {% endif %}
+    {% if way == 3 %}
+        现金支付
+    {% endif %}
+    </p>
+    <p>应付：{{ shouldpay }}
+    </p>
+    <p>实付：{{ actpay }}
+    </p>
+    {% if way == 3 %}
+    <p>找零：{{ zhaoling }}</p>
+    {% endif %}
+    <a href="/index/">返回首页</a>
+{% endblock %}

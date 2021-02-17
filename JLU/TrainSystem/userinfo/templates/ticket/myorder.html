@@ -1,0 +1,29 @@
+{% extends 'userinfo/base.html' %}
+{% block title %}我的订单信息{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <h2>您的订单信息如下：</h2>
+        </div>
+    <hr>
+        <div class="row">
+            <ul class="list-group">
+                {% for item in allinfo %}
+                    <li class="list-group-item">
+                        <option>出发地：{{ item.0 }}</option>
+                        <option>发车时间：{{ item.4 }}</option>
+                        <option>目的地：{{ item.1 }}</option>
+                        <option>到达时间：{{ item.5 }}</option>
+                        <option>类型：{{ item.2 }}</option>
+                        <option>票价：{{ item.3 }}</option>
+                        <option>购票时间：{{ item.6 }}</option>
+                    </li>
+                    <a href={% url "myrefund" item.7%}>退票</a>
+                    <hr>
+                {% endfor %}
+            </ul>
+
+        </div>
+    <hr>
+
+{% endblock %}

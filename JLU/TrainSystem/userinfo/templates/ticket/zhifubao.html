@@ -1,0 +1,24 @@
+{% extends 'userinfo/base.html' %}
+{% load static %}
+{% block title %}支付宝支付{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <h2>请扫描二维码完成付款</h2>
+                <hr>
+                <img src={%static "pic/zhifubao.png"%} class="img-rounded"/>
+            </div>
+        </div>
+    <div class="row" style="margin-top: 30px">
+        <div class="col-md-6 col-md-offset-3">
+            <a href={% url "payres" 1 price price %}>
+            <button class="btn-primary">完成支付</button>
+            </a>
+            <a href="/index">
+            <button class="btn-primary" style="margin-left: 180px">取消支付，返回首页</button>
+            </a>
+        </div>
+    </div>
+    </div>
+{% endblock %}

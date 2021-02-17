@@ -1,0 +1,194 @@
+{% extends 'userinfo/base.html' %}
+{% block title %}主页{% endblock %}
+{% block content %}
+    <div class="container">
+    <div class="row">
+    {% if request.session.is_login %}
+    <h1>你好,{{ request.session.user_name }}！欢迎回来！</h1>
+    {% else %}
+    <h1>你尚未登录，无法买票！</h1>
+    {% endif %}
+    </div>
+    <hr>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <form role="form" action="." method="post" autocomplete="on" class="form-horizontal">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-3 ">
+                            <div class="form-group" >
+                                <label for="startplace">起始地</label>
+                                <input type="text" name="startplace" class="form-control" id="startplace" placeholder="请输入出发地" required="true" >
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 ">
+                            <div class="form-group">
+                                <label for="endplace" >到达地</label>
+                                <input type="text" name="endplace" class="form-control" id="endplace" placeholder="请输入目的地" required="true">
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 ">
+                            <div class="form-group">
+                                <label>选择日期：</label>
+                                <!--指定 date标记-->
+                                <div class='input-group date' id='datetimepicker1'>
+                                    <input type='text' name="starttime" class="form-control" required="true"/>
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 ">
+                            <button type="submit" class="btn btn-primary" style="margin-top:25px">提交</button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+        <div class="row">
+            <table class="table table-hover table-bordered">
+                <caption>查询结果如下：</caption>
+                <thead style="background: blue;color: #fff">
+                <tr>
+                    <th>车次</th>
+                    <th>出发站<br>到达站</th>
+                    <th>出发时间<br>到达时间</th>
+                    <th>历时</th>
+                    <th><nobr>上午座</nobr><br><nobr>特等座</nobr></th>
+                    <th>一等座</th>
+                    <th>二等座<br>二等包座</th>
+                    <th>高级<br>软卧</th>
+                    <th>软卧<br>一等卧</th>
+                    <th>动卧</th>
+                    <th>硬卧<br>二等卧</th>
+                    <th>软卧</th>
+                    <th>硬座</th>
+                    <th>无座</th>
+                    <th>其他</th>
+                    <th>备注</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for item,time in trainlines %}
+                <tr>
+                    <td>{{item.trainnum}}</td>
+                    <td><nobr>{{item.startplace}}</nobr><br><nobr>{{item.endplace}}</nobr></td>
+                    <td><nobr>{{item.starttime}}</nobr><br><nobr>{{item.endtime}}</nobr></td>
+                    <td><option>{{time}}</option></td>
+                    {% for key,value in alltickets.items %}
+                        {% if key == item.id %}
+                            <td><option>{{value.0.0}}</option><br><nobr><option>{{value.0.1}}</option>元</nobr></td>
+                        {% endif %}
+                    {% endfor %}
+                    {% for key,value in alltickets.items %}
+                        {% if key == item.id %}
+                            <td><option>{{value.1.0}}</option><br><nobr><option>{{value.1.1}}</option>元</nobr></td>
+                        {% endif %}
+                    {% endfor %}
+                    {% for key,value in alltickets.items %}
+                        {% if key == item.id %}
+                            <td><option>{{value.2.0}}</option><br><nobr><option>{{value.2.1}}</option>元</nobr></td>
+                        {% endif %}
+                    {% endfor %}
+                    {% for key,value in alltickets.items %}
+                        {% if key == item.id %}
+                            <td><option>{{value.3.0}}</option><br><nobr><option>{{value.3.1}}</option>元</nobr></td>
+                        {% endif %}
+                    {% endfor %}
+                    {% for key,value in alltickets.items %}
+                        {% if key == item.id %}
+                            <td><option>{{value.4.0}}</option><br><nobr><option>{{value.4.1}}</option>元</nobr></td>
+                        {% endif %}
+                    {% endfor %}
+                    {% for key,value in alltickets.items %}
+                        {% if key == item.id %}
+                            <td><option>{{value.5.0}}</option><br><nobr><option>{{value.5.1}}</option>元</nobr></td>
+                        {% endif %}
+                    {% endfor %}
+                    {% for key,value in alltickets.items %}
+                        {% if key == item.id %}
+                            <td><option>{{value.6.0}}</option><br><nobr><option>{{value.6.1}}</option>元</nobr></td>
+                        {% endif %}
+                    {% endfor %}
+                    {% for key,value in alltickets.items %}
+                        {% if key == item.id %}
+                            <td><option>{{value.7.0}}</option><br><nobr><option>{{value.7.1}}</option>元</nobr></td>
+                        {% endif %}
+                    {% endfor %}
+                    {% for key,value in alltickets.items %}
+                        {% if key == item.id %}
+                            <td><option>{{value.8.0}}</option><br><nobr><option>{{value.8.1}}</option>元</nobr></td>
+                        {% endif %}
+                    {% endfor %}
+                    {% for key,value in alltickets.items %}
+                        {% if key == item.id %}
+                            <td><option>{{value.9.0}}</option><br><nobr><option>{{value.9.1}}</option>元</nobr></td>
+                        {% endif %}
+                    {% endfor %}
+
+                    <td>--</td>
+                {% if request.session.is_login %}
+                    <td><a href={%url "ticket" item.id  %}>可预定</a></td>
+                {% else %}
+                    <td>请先登录后预定</td>
+                {% endif %}
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    <script>
+    $("#startplace,#endplace").autocomplete({
+        source: "/ajax/",
+       minChars: 0,
+
+            max: 5,
+
+            autoFill: true,
+
+            mustMatch: true,
+
+            matchContains: true,
+
+            scrollHeight: 220,
+
+            formatItem: function(data, i, total){
+
+                  return"<I>"+data[0]+"</I>";
+
+            },
+
+            formatMatch: function(data, i, total){
+
+                  return data[0];
+
+            },
+
+            formatResult: function(data){
+
+                  return data[0];
+
+            }
+        });
+
+$(function () {
+    $('#datetimepicker1').datetimepicker({
+        format: 'YYYY-MM-DD',
+        locale: moment.locale('zh-cn')
+    });
+});
+    </script>
+
+
+{% endblock %}
+

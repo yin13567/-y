@@ -1,0 +1,25 @@
+{% extends 'userinfo/base.html' %}
+{% block title %}填写订单{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <h2>请选择票的类型</h2>
+        </div>
+    <hr>
+        <div class="row">
+            <ul class="list-group">
+                {% for item in ticket %}
+                    <li class="list-group-item">
+                        <p>{{ item.name }}</p>
+                        <p>价格：{{ item.price }}</p>
+                        <p>余票:{{ item.num }}</p>
+                        <a href="{% url "ticketconf" item.id%}">选择</a>
+                    </li>
+                    <hr>
+                {% endfor %}
+            </ul>
+
+        </div>
+    </div>
+
+{% endblock %}

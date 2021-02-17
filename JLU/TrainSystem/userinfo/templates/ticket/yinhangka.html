@@ -1,0 +1,29 @@
+{% extends 'userinfo/base.html' %}
+{% block title %}银行卡支付{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="col-md-4 col-md-offset-4">
+          <form class='form-register' action={% url "payres" 2 price price %} method="post">
+              {% csrf_token %}
+
+              <h2 class="text-center">请输入您的个人信息</h2>
+             <div class="form-group" >
+                 <label for="cardnum">银行卡号：</label>
+                 <input type="text" name="cardnum" class="form-control" id="startplace" placeholder="请输入银行卡号" required="true" >
+             </div>
+              <div class="form-group" >
+                 <label for="cardpasswd">密码：</label>
+                 <input type="password" name="cardpasswd" class="form-control" id="startplace" placeholder="请输入银行卡密码" required="true" >
+             </div>
+              <div class="form-group" >
+                 <label for="paypasswd">支付密码：</label>
+                 <input type="password" name="paypasswd" class="form-control" id="startplace" placeholder="请输入支付密码" required="true" >
+             </div>
+
+              <button type="reset" class="btn btn-default pull-left">重置</button>
+              <button type="submit" class="btn btn-primary pull-right">提交</button>
+
+          </form>
+        </div>
+    </div>
+{% endblock %}
